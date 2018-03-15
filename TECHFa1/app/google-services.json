@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "240911023889",
+    "project_id": "estimotesignin"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:240911023889:android:320d9b1cf6508910",
+        "android_client_info": {
+          "package_name": "com.estimote.blank"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "240911023889-qk0ungb6tajh42r8s8cs42bt442951v6.apps.googleusercontent.com	",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.estimote.blank",
+            "certificate_hash": "83dc76e6521495ddc985e7f46e9455f9551740e0"
+          }
+        },
+        {
+          "client_id": "240911023889-ekdid8cc6d6ed6ucmu3tdp8t73sqhn6q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqFUGWKOghr0emvAqeoNfYgPZ7nNf011M"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
