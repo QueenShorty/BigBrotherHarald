@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         Name = (TextView)findViewById(R.id.name);
         SignIn.setOnClickListener(this);
         SignOut.setOnClickListener(this);
+        MainMenu.setOnClickListener(this);
         Name.setVisibility(View.GONE);
         SignOut.setVisibility(View.GONE);
         MainMenu.setVisibility(View.GONE);

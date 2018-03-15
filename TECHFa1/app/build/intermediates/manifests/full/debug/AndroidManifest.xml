@@ -37,7 +37,6 @@
         android:icon="@mipmap/ic_launcher"
         android:label="Main Menu"
         android:supportsRtl="true"
-        android:testOnly="true"
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.estimote.blank.MainActivity"
