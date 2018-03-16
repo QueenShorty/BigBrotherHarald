@@ -1,4 +1,0 @@
-#Thu Mar 15 12:31:24 CDT 2018
-base.0=C\:\\Users\\drove\\Documents\\School\\Capstone\\BigBrotherHarald\\TECHFa1\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\42
-path.0=classes.dex
-renamed.0=classes.dex

@@ -29,7 +29,7 @@
         android:layout_marginTop="250dp"
         android:text="Location Services"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/bn_FitBit"
+        app:layout_constraintEnd_toStartOf="@+id/bn_fitBit"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
