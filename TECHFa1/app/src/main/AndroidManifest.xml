@@ -21,7 +21,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainMenu"></activity>
+        <activity android:name=".MainMenu" />
+        <activity
+            android:name=".adminmenu"
+            android:label="Admin Menu" />
     </application>
 
 </manifest>

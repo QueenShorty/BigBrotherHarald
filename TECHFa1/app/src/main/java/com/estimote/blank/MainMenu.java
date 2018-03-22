@@ -1,5 +1,6 @@
 package com.estimote.blank;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -38,8 +39,14 @@ public class MainMenu extends AppCompatActivity implements View.OnClickListener,
             case R.id.bn_fitBit:
                 break;
             case R.id.bn_admin:
+                adminMenu();
                 break;
         }
+    }
+
+    private void adminMenu() {
+        Intent switchToAdminMenu = new Intent(this, adminmenu.class);
+        startActivity(switchToAdminMenu);
     }
 
     @Override
