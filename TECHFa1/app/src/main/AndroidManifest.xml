@@ -25,6 +25,12 @@
         <activity
             android:name=".adminmenu"
             android:label="Admin Menu" />
+        <activity
+            android:name=".DeviceServices"
+            android:label="Device Services" />
+        <activity
+            android:name=".ProfilePage"
+            android:label="Profile Page" />
     </application>
 
 </manifest>

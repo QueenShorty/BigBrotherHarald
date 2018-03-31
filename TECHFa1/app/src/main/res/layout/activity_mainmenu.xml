@@ -20,14 +20,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/bn_locationServ"
-        android:layout_width="170dp"
+        android:id="@+id/bn_deviceServ"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="232dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="250dp"
-        android:text="Location Services"
+        android:text="Device Services"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -36,16 +36,16 @@
         app:layout_constraintVertical_bias="0.513" />
 
     <Button
-        android:id="@+id/bn_fitBit"
-        android:layout_width="71dp"
+        android:id="@+id/bn_profile"
+        android:layout_width="83dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="184dp"
         android:layout_marginTop="16dp"
-        android:text="FitBit"
+        android:text="Profile"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bn_locationServ" />
+        app:layout_constraintTop_toBottomOf="@+id/bn_deviceServ" />
 
     <Button
         android:id="@+id/bn_admin"
@@ -57,7 +57,18 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bn_fitBit"
+        app:layout_constraintTop_toBottomOf="@+id/bn_profile"
         app:layout_constraintVertical_bias="0.009" />
+
+    <TextView
+        android:id="@+id/user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="TextView"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Logo"
+        tools:ignore="InvalidId" />
 
 </android.support.constraint.ConstraintLayout>

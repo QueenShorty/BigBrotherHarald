@@ -113,6 +113,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
             updateUI(true);
 
             Intent switchToHomepage = new Intent(this, MainMenu.class);
+            switchToHomepage.putExtra("USER_NAME", name);
             startActivity(switchToHomepage);
 
         }

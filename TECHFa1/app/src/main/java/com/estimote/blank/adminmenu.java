@@ -18,6 +18,7 @@ public class adminmenu extends AppCompatActivity implements View.OnClickListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adminmenu);
+        String name = getIntent().getStringExtra("USER_NAME");
 
         ControlHubSettings = (Button)findViewById(R.id.bn_controlHubSettings);
         UserSettings = (Button)findViewById(R.id.bn_userSettings);
@@ -25,6 +26,8 @@ public class adminmenu extends AppCompatActivity implements View.OnClickListener
         UserSettings.setOnClickListener(this);
 
     }
+
+
 
     @Override
     public void onClick(View view) {
