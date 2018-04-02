@@ -6,4 +6,177 @@
     android:layout_height="match_parent"
     tools:context="com.estimote.blank.DeviceServices">
 
+    <TextView
+        android:id="@+id/txt_LocationTable"
+        android:layout_width="153dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="36dp"
+        android:text="Locations"
+        android:textSize="30sp"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="96dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="26dp">
+
+            <TextView
+                android:id="@+id/txt_table_Device"
+                android:layout_width="181dp"
+                android:layout_height="wrap_content"
+                android:text="Device"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/txt_table_Location"
+                android:layout_width="173dp"
+                android:layout_height="wrap_content"
+                android:text="Location"
+                android:textSize="24sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/txt_device1_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bob's Phone"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/txt_device1_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Living Room"
+                android:textSize="18sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/device2_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="192.168.0.13"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/device2_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kitchen"
+                android:textSize="18sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/device3_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Galaxy Note 7"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/device3_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="All over the place"
+                android:textSize="18sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/device4_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tars"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/device4_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Walter's Bedroom"
+                android:textSize="18sp" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/last_table_row"
+            android:layout_width="match_parent"
+            android:layout_height="26dp">
+
+            <TextView
+                android:id="@+id/device5_name"
+                android:layout_width="181dp"
+                android:layout_height="wrap_content"
+                android:text="Walter's phone"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/device5_location"
+                android:layout_width="173dp"
+                android:layout_height="wrap_content"
+                android:text="Bathroom"
+                android:textSize="18sp" />
+        </TableRow>
+    </TableLayout>
+
+    <Button
+        android:id="@+id/bn_scanButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="28dp"
+        android:text="Scan"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.307"
+        app:layout_constraintStart_toEndOf="@+id/txt_scanNewDevices"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
+
+    <TextView
+        android:id="@+id/txt_scanNewDevices"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="36dp"
+        android:text="Scan for new devices"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
+
+    <ProgressBar
+        android:id="@+id/loading_spinner"
+        style="?android:progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="36dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_scanNewDevices" /> /
+
 </android.support.constraint.ConstraintLayout>

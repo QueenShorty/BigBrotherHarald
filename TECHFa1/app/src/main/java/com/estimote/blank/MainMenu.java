@@ -1,6 +1,9 @@
 package com.estimote.blank;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,24 +19,22 @@ public class MainMenu extends AppCompatActivity implements View.OnClickListener,
     private Button DeviceServ, Profile, Admin;
     private TextView Name;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainmenu);
-        String name = getIntent().getStringExtra("USER_NAME");
 
         DeviceServ = (Button)findViewById(R.id.bn_deviceServ);
         Profile = (Button)findViewById(R.id.bn_profile);
         Admin = (Button)findViewById(R.id.bn_admin);
         Name = (TextView)findViewById(R.id.user_name);
-        Name.setText(name);
+        Name.setVisibility(View.GONE);
+        //Name.setText(name);
         DeviceServ.setOnClickListener(this);
         Profile.setOnClickListener(this);
         Admin.setOnClickListener(this);
 
     }
-
 
     @Override
     public void onClick(View view)
@@ -54,19 +55,16 @@ public class MainMenu extends AppCompatActivity implements View.OnClickListener,
 
     private void deviceServ() {
         Intent switchToDeviceServ = new Intent(this, DeviceServices.class );
-        //switchToDeviceServ.putExtra("USER_NAME", name);
         startActivity(switchToDeviceServ);
     }
 
     private void profilePage() {
         Intent switchtoProfilePage = new Intent(this, ProfilePage.class);
-        //switchtoProfilePage.putExtra("USER_NAME", name);
         startActivity(switchtoProfilePage);
     }
 
     private void adminMenu() {
         Intent switchToAdminMenu = new Intent(this, adminmenu.class);
-        //switchToAdminMenu.putExtra("USER_NAME", name);
         startActivity(switchToAdminMenu);
     }
 

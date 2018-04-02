@@ -1,7 +1,10 @@
 package com.estimote.blank;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -35,10 +38,12 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
     private GoogleApiClient googleApiClient;
     private static final int REQ_Code = 9001;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         SignIn = (SignInButton)findViewById(R.id.bn_login);
         SignOut = (Button)findViewById(R.id.bn_logout);
         MainMenu = (Button)findViewById(R.id.bn_mainMenu);
@@ -109,6 +114,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
             String name = account.getDisplayName();
             String email = account.getEmail();
             String img_url = account.getPhotoUrl().toString();
+
             Name.setText(name);
             updateUI(true);
 
@@ -149,8 +155,12 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         if(requestCode==REQ_Code)
         {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+
             handleResult(result);
         }
     }
 
+
 }
+
+

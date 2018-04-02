@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">Big Brother Harald</string>
     <string name="action_settings">Settings</string>
+
+    <string-array name="time_selections">
+        <item>Today</item>
+        <item>Last 7 days</item>
+        <item>Last 30 days</item>
+        <item>Last 180 days</item>
+    </string-array>
 </resources>
