@@ -31,6 +31,12 @@
         <activity
             android:name=".ProfilePage"
             android:label="Profile Page" />
+        <activity
+            android:name=".ControlHub"
+            android:label="Control Hub" />
+        <activity
+            android:name=".ManageUsers"
+            android:label="Manage Users" />
     </application>
 
 </manifest>

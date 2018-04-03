@@ -10,8 +10,8 @@
         android:id="@+id/bn_controlHubSettings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="68dp"
         android:text="Control Hub Settings"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -20,11 +20,31 @@
         android:id="@+id/bn_userSettings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="150dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="28dp"
         android:text="User Settings"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/bn_manageUsers" />
+
+    <Button
+        android:id="@+id/bn_manageUsers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="28dp"
+        android:text="Manage Users"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bn_controlHubSettings" />
+
+    <Button
+        android:id="@+id/bn_addAdmin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="28dp"
+        android:text="Add Administrator"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bn_userSettings" />
 
 
 

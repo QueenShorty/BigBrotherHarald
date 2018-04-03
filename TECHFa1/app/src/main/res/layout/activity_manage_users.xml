@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ManageUsers">
+
+    <TableLayout
+        android:id="@+id/userTable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="96dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TableRow
+            android:id="@+id/row1"
+            android:layout_width="328dp"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/txt_user1"
+                android:layout_width="250dp"
+                android:layout_height="38dp"
+                android:text="Destany"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/bn_deleteuser1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Delete" />
+
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/row2"
+            android:layout_width="328dp"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/txt_user2"
+                android:layout_width="250dp"
+                android:layout_height="38dp"
+                android:text="Daniel"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/bn_deleteuser2"
+                android:layout_width="110dp"
+                android:layout_height="match_parent"
+                android:text="Delete" />
+
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/row3"
+            android:layout_width="328dp"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/txt_user3"
+                android:layout_width="250dp"
+                android:layout_height="38dp"
+                android:text="Todd"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/bn_deleteuser3"
+                android:layout_width="110dp"
+                android:layout_height="match_parent"
+                android:text="Delete" />
+
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/row4"
+            android:layout_width="328dp"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/txt_user4"
+                android:layout_width="250dp"
+                android:layout_height="38dp"
+                android:text="Nick"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/bn_deleteuser4"
+                android:layout_width="110dp"
+                android:layout_height="match_parent"
+                android:text="Delete" />
+
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/row5"
+            android:layout_width="328dp"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/txt_user5"
+                android:layout_width="250dp"
+                android:layout_height="38dp"
+                android:text="Jon"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/bn_deleteuser5"
+                android:layout_width="110dp"
+                android:layout_height="match_parent"
+                android:text="Delete" />
+
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/row6"
+            android:layout_width="328dp"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/txt_user6"
+                android:layout_width="250dp"
+                android:layout_height="38dp"
+                android:text="Jason"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/bn_deleteuser6"
+                android:layout_width="110dp"
+                android:layout_height="match_parent"
+                android:text="Delete" />
+
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/row7"
+            android:layout_width="328dp"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/txt_user7"
+                android:layout_width="250dp"
+                android:layout_height="38dp"
+                android:text="JP"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/bn_deleteuser7"
+                android:layout_width="110dp"
+                android:layout_height="match_parent"
+                android:text="Delete" />
+
+
+        </TableRow>
+    </TableLayout>
+
+    <TextView
+        android:id="@+id/txt_active"
+        android:layout_width="103dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
+        android:text="Active"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/bn_addUser"
+        android:layout_width="62dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginTop="40dp"
+        android:text="Add"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

@@ -16,6 +16,7 @@ public class DeviceServices extends AppCompatActivity implements View.OnClickLis
     private TableRow Last;
     private ProgressBar Spinner;
     private int mShortAnimationDuration;
+    final Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,16 +40,26 @@ public class DeviceServices extends AppCompatActivity implements View.OnClickLis
         switch (view.getId())
         {
             case R.id.bn_scanButton:
-                Spinner.setVisibility(View.VISIBLE);
-                Spinner.animate()
-                        .alpha(1f)
-                        .setDuration(mShortAnimationDuration)
-                        .setListener(null);
-                Spinner.setVisibility(GONE);
-                //Last.setVisibility(View.VISIBLE);
+                spinnerVisible();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        // Do something after 5s = 5000ms
+                        Spinner.setVisibility(GONE);
+                        Last.setVisibility(View.VISIBLE);
+                    }
+                }, 3000);
                 break;
         }
 
+    }
+
+    protected void spinnerVisible() {
+        Spinner.setVisibility(View.VISIBLE);
+        Spinner.animate()
+                .alpha(1f)
+                .setDuration(mShortAnimationDuration)
+                .setListener(null);
     }
 
 
