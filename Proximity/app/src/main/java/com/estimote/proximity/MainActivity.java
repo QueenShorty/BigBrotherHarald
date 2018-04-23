@@ -49,15 +49,20 @@ public class MainActivity extends AppCompatActivity {
                 })
                 .build();
 
-        //Defines zones for each beacons
+        //Defines zones for each beacons,
+        //Zones will be divided into room with enter and exit features
+        //Each zone will correlate to a beacon
+
+        //candy beacon LocationOne = living_room
 
         ProximityZone venueZone =
                 proximityObserver.zoneBuilder()
-                        .forAttachmentKeyAndValue("venue", "office")
+                        .forAttachmentKeyAndValue("locationOne", "living_room")
                         .inFarRange()
                         .withOnEnterAction(new Function1<ProximityAttachment, Unit>() {
                             @Override public Unit invoke(ProximityAttachment proximityAttachment) {
                                 /* Do something here */
+                                Log.d("app", "Welcome to the Living room!");
                                 return null;
                             }
                         })
@@ -65,19 +70,61 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public Unit invoke(ProximityAttachment proximityAttachment) {
                                 /* Do something here */
-                                Log.d("app", "Welcome to the 1st floor");
-                                return null;
-                            }
-                        })
-                        .withOnChangeAction(new Function1<List<? extends ProximityAttachment>, Unit>() {
-                            @Override
-                            public Unit invoke(List<? extends ProximityAttachment> proximityAttachments) {
-                                /* Do something here */
-                                Log.d("app", "Bye bye, come visit us again on the 1st floor");
+                                Log.d("app", "Bye bye, come to the living room again!");
                                 return null;
                             }
                         })
                         .create();
+
+        //Defining Proximity Zone 2
+        //Correlates to the Lemon Beacon = kitchen
+
+        ProximityZone venueZone2 =
+                proximityObserver.zoneBuilder()
+                        .forAttachmentKeyAndValue("locationTwo", "kitchen")
+                        .inFarRange()
+                        .withOnEnterAction(new Function1<ProximityAttachment, Unit>() {
+                            @Override public Unit invoke(ProximityAttachment proximityAttachment) {
+
+                                Log.d("app", "Welcome to the kitchen");
+                                return null;
+                            }
+                        })
+                        .withOnExitAction(new Function1<ProximityAttachment, Unit>() {
+                            @Override
+                            public Unit invoke(ProximityAttachment proximityAttachment) {
+
+                                Log.d("app", "Cya your'e leaving the kitchen");
+                                return null;
+                            }
+                        })
+                        .create();
+
+        //Defining Proximity Zone 3
+        //Correlates to the beetroom beacon = Gym
+
+        ProximityZone venueZone3 =
+                proximityObserver.zoneBuilder()
+                        .forAttachmentKeyAndValue("locationThree", "gym")
+                        .inFarRange()
+                        .withOnEnterAction(new Function1<ProximityAttachment, Unit>() {
+                            @Override public Unit invoke(ProximityAttachment proximityAttachment) {
+
+                                Log.d("app", "Start lifting");
+                                return null;
+                            }
+                        })
+                        .withOnExitAction(new Function1<ProximityAttachment, Unit>() {
+                            @Override
+                            public Unit invoke(ProximityAttachment proximityAttachment) {
+
+                                Log.d("app", "Wobble bye");
+                                return null;
+                            }
+                        })
+                        .create();
+
+
 
         proximityContentAdapter = new ProximityContentAdapter(this);
         GridView gridView = findViewById(R.id.gridView);
@@ -114,6 +161,8 @@ public class MainActivity extends AppCompatActivity {
         ProximityObserver.Handler observationHandler =
                 proximityObserver
                         .addProximityZone(venueZone)
+                        .addProximityZone(venueZone2)
+                        .addProximityZone(venueZone3)
                         .start();
 
     }
