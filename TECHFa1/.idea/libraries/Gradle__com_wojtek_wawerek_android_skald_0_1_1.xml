@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.wojtek.wawerek:android-skald-0.1.1">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/android-skald-0.1.1.aar/2f74a03bceb7b6cfec56d1b320dd022d/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/android-skald-0.1.1.aar/2f74a03bceb7b6cfec56d1b320dd022d/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.wojtek.wawerek/android-skald/0.1.1/d806a07889409f75a060ec46d619c9de82318075/android-skald-0.1.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

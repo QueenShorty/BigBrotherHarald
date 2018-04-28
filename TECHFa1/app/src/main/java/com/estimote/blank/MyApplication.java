@@ -2,6 +2,8 @@ package com.estimote.blank;
 
 import android.app.Application;
 
+import com.estimote.internal_plugins_api.cloud.CloudCredentials;
+import com.estimote.proximity_sdk.proximity.EstimoteCloudCredentials;
 import com.estimote.sdk.EstimoteSDK;
 
 //
@@ -9,6 +11,9 @@ import com.estimote.sdk.EstimoteSDK;
 //
 
 public class MyApplication extends Application {
+
+    public CloudCredentials cloudCredentials =
+            new EstimoteCloudCredentials("proximity-beacons-1-5-iq9", "b625fd3a5a0e35ffc4c93756c403f50c");
 
     @Override
     public void onCreate() {
@@ -23,4 +28,6 @@ public class MyApplication extends Application {
         // it's usually only a good idea when troubleshooting issues with the Estimote SDK
 //        EstimoteSDK.enableDebugLogging(true);
     }
+
+
 }

@@ -17,7 +17,7 @@ import static android.view.View.GONE;
 
 public class adminmenu extends AppCompatActivity implements View.OnClickListener {
 
-    private Button ControlHubSettings, UserSettings, ManageUsers;
+    private Button ControlHubSettings, UserSettings, ManageUsers, UserLogs, AddAdmin;
 
 
     @Override
@@ -29,10 +29,14 @@ public class adminmenu extends AppCompatActivity implements View.OnClickListener
         ControlHubSettings = (Button)findViewById(R.id.bn_controlHubSettings);
         UserSettings = (Button)findViewById(R.id.bn_userSettings);
         ManageUsers = (Button)findViewById(R.id.bn_manageUsers);
+        UserLogs = (Button)findViewById(R.id.bn_userLogs);
+        AddAdmin = (Button)findViewById(R.id.bn_addAdmin);
+        AddAdmin.setVisibility(GONE);
 
         ControlHubSettings.setOnClickListener(this);
         UserSettings.setOnClickListener(this);
         ManageUsers.setOnClickListener(this);
+        UserLogs.setOnClickListener(this);
 
     }
 
@@ -51,8 +55,16 @@ public class adminmenu extends AppCompatActivity implements View.OnClickListener
                 break;
             case R.id.bn_userSettings:
                 break;
+            case R.id.bn_userLogs:
+                userLogs();
+                break;
         }
 
+    }
+
+    private void userLogs() {
+        Intent switchToUserLogs = new Intent(this, UserLogs.class );
+        startActivity(switchToUserLogs);
     }
 
     private void manageUsers() {

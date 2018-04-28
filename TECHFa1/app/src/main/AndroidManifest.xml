@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.estimote.blank">
 
+    <uses-sdk android:minSdkVersion="9"/>
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -33,10 +35,21 @@
             android:label="Profile Page" />
         <activity
             android:name=".ControlHub"
-            android:label="Control Hub" />
+            android:label="Room Settings" />
         <activity
             android:name=".ManageUsers"
             android:label="Manage Users" />
+        <activity
+            android:name=".UserLogs"
+            android:label="User Logs" />
+        <activity android:name=".Proximity"
+            android:label="Proximity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

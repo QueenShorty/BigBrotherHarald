@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.estimote:ketchup-0.4.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/ketchup-0.4.0.aar/cbe751cc9b851dd7e72317aa47d698cd/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/ketchup-0.4.0.aar/cbe751cc9b851dd7e72317aa47d698cd/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.estimote/ketchup/0.4.0/9d4329786c89839f5e49d939b964d39ed5724ebe/ketchup-0.4.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

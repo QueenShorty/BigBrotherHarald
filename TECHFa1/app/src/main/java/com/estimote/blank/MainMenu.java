@@ -16,7 +16,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 
 public class MainMenu extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
 
-    private Button DeviceServ, Profile, Admin;
+    private Button DeviceServ, Profile, Admin, Proximity;
     private TextView Name;
 
     @Override
@@ -27,12 +27,15 @@ public class MainMenu extends AppCompatActivity implements View.OnClickListener,
         DeviceServ = (Button)findViewById(R.id.bn_deviceServ);
         Profile = (Button)findViewById(R.id.bn_profile);
         Admin = (Button)findViewById(R.id.bn_admin);
+        Proximity = (Button)findViewById(R.id.bn_proximity);
         Name = (TextView)findViewById(R.id.user_name);
+        Profile.setVisibility(View.GONE);
         Name.setVisibility(View.GONE);
         //Name.setText(name);
         DeviceServ.setOnClickListener(this);
         Profile.setOnClickListener(this);
         Admin.setOnClickListener(this);
+        Proximity.setOnClickListener(this);
 
     }
 
@@ -47,10 +50,17 @@ public class MainMenu extends AppCompatActivity implements View.OnClickListener,
             case R.id.bn_profile:
                 profilePage();
                 break;
+            case R.id.bn_proximity:
+                proximity();
             case R.id.bn_admin:
                 adminMenu();
                 break;
         }
+    }
+
+    private void proximity() {
+        Intent switchToProximity = new Intent(this, Proximity.class);
+        startActivity(switchToProximity);
     }
 
     private void deviceServ() {
