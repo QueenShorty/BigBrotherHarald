@@ -1,0 +1,6 @@
+CREATE TABLE USERLOC(
+USERNAME varchar(255) not NULL, 
+USERID varchar(255) not NULL, 
+PHONETYPE varchar(255) not NULL, 
+USERLOCATION varchar(255) not NULL, 
+);
