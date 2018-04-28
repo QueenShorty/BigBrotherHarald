@@ -52,6 +52,7 @@ public class MainMenu extends AppCompatActivity implements View.OnClickListener,
                 break;
             case R.id.bn_proximity:
                 proximity();
+                break;
             case R.id.bn_admin:
                 adminMenu();
                 break;
