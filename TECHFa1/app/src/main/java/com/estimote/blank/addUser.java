@@ -1,10 +1,12 @@
 package com.estimote.blank;
 
 import android.os.AsyncTask;
+import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -17,6 +19,7 @@ import com.estimote.blank.Database.Api;
 import com.estimote.blank.Database.MainActivity;
 import com.estimote.blank.Database.RequestHandler;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -29,6 +32,7 @@ import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 import static android.view.View.GONE;
+import static com.estimote.blank.Database.Api.URL_READ_USER_LOC;
 
 public class addUser extends AppCompatActivity implements View.OnClickListener {
 
@@ -37,7 +41,12 @@ public class addUser extends AppCompatActivity implements View.OnClickListener {
 
     EditText editTextName, editTextDevice;
     ProgressBar progressBar;
-    Button buttonAddUpdate;
+    Button buttonAddUpdate, DeleteUser;
+    Spinner SpinDeleteUser;
+    ArrayList<String> userIDs = new ArrayList<>();
+    ArrayList<String> userNames = new ArrayList<>();
+
+    RequestHandler ReqHandler = new RequestHandler();
 
     boolean isUpdating = false;
 
@@ -50,11 +59,29 @@ public class addUser extends AppCompatActivity implements View.OnClickListener {
         editTextName = (EditText) findViewById(R.id.editTextName);
         editTextDevice = (EditText) findViewById(R.id.editTextDevice);
         buttonAddUpdate = (Button) findViewById(R.id.buttonAddUpdate);
-
+        SpinDeleteUser = (Spinner) findViewById(R.id.spinner_DeleteUser);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-
+        DeleteUser = (Button) findViewById(R.id.bn_Delete_User);
 
         buttonAddUpdate.setOnClickListener(this);
+        DeleteUser.setOnClickListener(this);
+        userIDs = getUsers("USERID");
+        System.out.println("=========================");
+        System.out.println("=========================");
+        System.out.println(userIDs);
+        System.out.println("=========================");
+        System.out.println("=========================");
+
+
+        userNames = getUsers("USERNAMES");
+        System.out.println("=========================");
+        System.out.println("=========================");
+        System.out.println(userNames);
+        System.out.println("=========================");
+        System.out.println("=========================");
+        ArrayAdapter<String> adp = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item, userNames);
+        SpinDeleteUser.setAdapter(adp);
+
 
         readUser();
     }
@@ -66,6 +93,83 @@ public class addUser extends AppCompatActivity implements View.OnClickListener {
             case R.id.buttonAddUpdate:
                 createUser();
                 break;
+            case R.id.bn_Delete_User:
+                String USERID = "";
+                String USERNAME = SpinDeleteUser.getSelectedItem().toString();
+                for (int i = 0; i < userIDs.size(); i++)
+                {
+                    if (USERNAME == userNames.get(i))
+                    {
+                        USERID = userIDs.get(i);
+                    }
+                }
+                deleteUser(USERID);
+                break;
+        }
+    }
+
+    public ArrayList<String> getUsers(String type)
+    {
+        enableStrictMode();
+        JSONObject data = null;
+        String testString = "";
+        ArrayList<String> userIDs = new ArrayList<String>();
+        ArrayList<String> userNames = new ArrayList<String>();
+        try {
+            data = new JSONObject(ReqHandler.sendGetRequest(URL_READ_USER_LOC));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            testString = data.getString("USERLOC");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JSONArray jsonarray = null;
+        String username = "";
+        String userid = "";
+        try {
+            jsonarray = new JSONArray(testString);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        for (int i = 0; i < jsonarray.length(); i++) {
+            JSONObject jsonobject = null;
+            try {
+                jsonobject = jsonarray.getJSONObject(i);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            try {
+                userid = jsonobject.getString("USERID");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            try {
+                username = jsonobject.getString("USERNAME");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            userIDs.add(userid);
+            userNames.add(username);
+        }
+
+        System.out.println("=========================");
+        System.out.println("=========================");
+        System.out.println(userIDs);
+        System.out.println("=========================");
+        System.out.println("=========================");
+        //Test.setText(data.toString());
+        if (type == "USERID")
+        {
+            return userIDs;
+        }
+        else
+        {
+            System.out.println(userNames);
+            return userNames;
         }
     }
 
@@ -77,6 +181,7 @@ public class addUser extends AppCompatActivity implements View.OnClickListener {
         String USERID = "";
         RandomString temp = new RandomString(4, ThreadLocalRandom.current());
         USERID = temp.toString().trim();
+        USERID = USERID.substring(USERID.length() - 4);
 
         //validating the inputs
         if (TextUtils.isEmpty(USERNAME)) {
@@ -86,7 +191,7 @@ public class addUser extends AppCompatActivity implements View.OnClickListener {
         }
 
         if (TextUtils.isEmpty(PHONETYPE)) {
-            editTextDevice.setError("Please enter real name");
+            editTextDevice.setError("Please enter a device");
             editTextDevice.requestFocus();
             return;
         }
@@ -103,6 +208,12 @@ public class addUser extends AppCompatActivity implements View.OnClickListener {
         addUser.PerformNetworkRequest request = new addUser.PerformNetworkRequest(Api.URL_CREATE_USER, params, CODE_POST_REQUEST);
         request.execute();
 
+    }
+
+    private void deleteUser(String USERID)
+    {
+        addUser.PerformNetworkRequest request = new addUser.PerformNetworkRequest(Api.URL_DELETE_USER + USERID, null, CODE_GET_REQUEST);
+        request.execute();
     }
 
 
@@ -216,5 +327,10 @@ public class addUser extends AppCompatActivity implements View.OnClickListener {
             this(21);
         }
 
+    }
+
+    public void enableStrictMode(){
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
     }
 }

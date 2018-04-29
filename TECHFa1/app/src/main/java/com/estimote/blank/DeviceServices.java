@@ -53,6 +53,7 @@ public class DeviceServices extends AppCompatActivity implements View.OnClickLis
        // Last.setVisibility(GONE);
 
         getData();
+
     }
 
     @Override
@@ -76,6 +77,8 @@ public class DeviceServices extends AppCompatActivity implements View.OnClickLis
         }
 
     }
+
+
 
     public void getData()
     {
@@ -118,7 +121,19 @@ public class DeviceServices extends AppCompatActivity implements View.OnClickLis
                 e.printStackTrace();
             }
             try {
-                location = jsonobject.getString("USERLOCATION");
+                System.out.println("________________________" + jsonobject.getString("USERLOCATION") + "________________________");
+                if (jsonobject.getString("USERLOCATION").isEmpty())
+                {
+                    location = "Unknown";
+                    System.out.println("+++++++++++++++++++++if statement");
+                }
+                else
+                {
+
+                    location = jsonobject.getString("USERLOCATION");
+                    System.out.println("+++++++++++++++++++++else statement");
+                }
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -127,6 +142,7 @@ public class DeviceServices extends AppCompatActivity implements View.OnClickLis
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+
             userLocations.add(location);
             userNames.add(username);
             userPhoneTypes.add(phonetype);
@@ -197,6 +213,8 @@ public class DeviceServices extends AppCompatActivity implements View.OnClickLis
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
     }
+
+    
 
 
 }

@@ -18,6 +18,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.estimote.blank.Database.MainActivity;
 import com.estimote.blank.Database.RequestHandler;
 import com.estimote.blank.Database.Api;
 import com.estimote.sdk.cloud.internal.User;
@@ -29,12 +30,16 @@ import org.w3c.dom.Text;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import static android.view.View.GONE;
 import static com.estimote.blank.Database.Api.URL_READ_USER_LOC;
 import static com.estimote.blank.Database.Api.URL_CREATE_USER;
 
 public class ManageUsers extends AppCompatActivity implements View.OnClickListener {
+
+    private static final int CODE_GET_REQUEST = 1024;
+    private static final int CODE_POST_REQUEST = 1025;
 
     private Button AddUser, Delete1;
     private EditText UserNameToAdd;
@@ -123,13 +128,14 @@ public class ManageUsers extends AppCompatActivity implements View.OnClickListen
 
     public void displayUsers(ArrayList<String> userNames){
         int dp = (int) (getResources().getDimension(R.dimen.userTable_font_size) / getResources().getDisplayMetrics().density);
-        for (int i = 0; i < userNames.size(); i++) {
+        final int size = userNames.size();
+        for (int i = 0; i < size; i++) {
 
             TableRow tableRow = new TableRow(this);
             tableRow.setId(i);
             tableRow.setMinimumHeight(dp);
 
-            TextView textView = new TextView(this);
+            final TextView textView = new TextView(this);
             textView.setId(i);
             textView.setText(userNames.get(i));
             System.out.println(userNames.get(i));
@@ -137,9 +143,11 @@ public class ManageUsers extends AppCompatActivity implements View.OnClickListen
             textView.setHeight(150);
             textView.setTextSize(dp);
             tableRow.addView(textView);
-            Button button = new Button(this);
+            final Button button = new Button(this);
             button.setText("Delete");
             button.setId(i);
+            final int index = i;
+
 
             tableRow.addView(button);
             System.out.println(tableRow);
@@ -149,6 +157,7 @@ public class ManageUsers extends AppCompatActivity implements View.OnClickListen
 
     }
 
+
     public void addUser(){
 
         Intent switchToAddUser = new Intent(this, addUser.class);
@@ -156,9 +165,63 @@ public class ManageUsers extends AppCompatActivity implements View.OnClickListen
 
     }
 
+    public void deleteUser(String USERID){
+        ManageUsers.PerformNetworkRequest request = new ManageUsers.PerformNetworkRequest(Api.URL_DELETE_USER + USERID, null, CODE_GET_REQUEST);
+        request.execute();
+    }
+
     public void enableStrictMode(){
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
+    }
+
+    public static class PerformNetworkRequest extends AsyncTask<Void, Void, String>
+    {
+        String url;
+        HashMap<String, String> params;
+        int requestCode;
+        private View progressBar;
+
+        PerformNetworkRequest(String url, HashMap<String, String> params, int requestCode) {
+            this.url = url;
+            this.params = params;
+            this.requestCode = requestCode;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressBar.setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            progressBar.setVisibility(GONE);
+            try {
+                JSONObject object = new JSONObject(s);
+                if (!object.getBoolean("error")) {
+                    //Toast.makeText(getApplicationContext(), object.getString("message"), Toast.LENGTH_SHORT).show();
+                    // refreshHeroList(object.getJSONArray("heroes"));
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        protected String doInBackground(Void... voids) {
+            RequestHandler requestHandler = new RequestHandler();
+
+            if (requestCode == CODE_POST_REQUEST)
+                return requestHandler.sendPostRequest(url, params);
+
+
+            if (requestCode == CODE_GET_REQUEST)
+                return requestHandler.sendGetRequest(url);
+
+            return null;
+        }
     }
 
 }
