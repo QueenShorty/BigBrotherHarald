@@ -44,18 +44,20 @@
  //the CREATE operation
  //if the api call value is 'createhero'
  //we will create a record in the database
- /*
+ 
  case 'createTime':
  //first check the parameters required for this request are available or not 
- isTheseParametersAvailable(array('CLOCK'));
+ isTheseParametersAvailable(array('USER', 'ROOM','CLOCK'));
  
  //creating a new dboperation object
  $db = new TimeOperation();
  
  //creating a new record in the database
  $result = $db->createTime(
+ $_POST['USER'],
+ $_POST['ROOM'],
  $_POST['CLOCK']
- );
+);
  
  
  //if the record is created adding success to response
@@ -78,7 +80,6 @@
  }
  
  break; 
- */ 
  //the READ operation
  //if the call is getheroes
  case 'getTime':
@@ -109,14 +110,14 @@
  }
  break; 
   
- /*
+ 
  //the delete operation
  case 'deleteTime':
  
  //for the delete operation we are getting a GET parameter from the url having the id of the record to be deleted
- if(isset($_GET['CLOCK'])){
+ if(isset($_GET['USER'])){
  $db = new TimeOperation();
- if($db->deleteTime($_GET['CLOCK'])){
+ if($db->deleteTime($_GET['USER'])){
  $response['error'] = false; 
  $response['message'] = 'time deleted successfully';
  $response['CTIME'] = $db->getTime();
@@ -128,7 +129,7 @@
  $response['error'] = true; 
  $response['message'] = 'Nothing to delete, provide an id please';
  }
- break; */ 
+ break; 
  }
  
  }else{

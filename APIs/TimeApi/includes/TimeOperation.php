@@ -22,14 +22,14 @@ class TimeOperation
  /*
  * The create operation
  * When this method is called a new record is created in the database
- *//*
- function createTime($CLOCK){
+ */
+ function createTime($USER, $ROOM, $CLOCK){
  $stmt = $this->con->prepare("INSERT INTO CTIME (USER, ROOM, CLOCK) VALUES (?, ?, ?)");
  $stmt->bind_param("sss", $USER, $ROOM, $CLOCK);
  if($stmt->execute())
  return true; 
  return false; 
- }*/ 
+ }
  
  /*
  * The read operation
@@ -66,13 +66,13 @@ class TimeOperation
  /*
  * The delete operation
  * When this method is called record is deleted for the given id 
- *//*
- function deleteTime($CLOCK){
- $stmt = $this->con->prepare("DELETE FROM CTIME WHERE CLOCK = ?");
- $stmt->bind_param("s", $CLOCK);
+ */
+ function deleteTime($USER){
+ $stmt = $this->con->prepare("DELETE FROM CTIME WHERE USER = ?");
+ $stmt->bind_param("s", $USER);
  if($stmt->execute())
  return true; 
  
  return false; 
- }*/ 
+ } 
 }
