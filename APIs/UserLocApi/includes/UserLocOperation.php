@@ -36,21 +36,14 @@ class UserLocOperation
  }
  
 //updateUser
- function updateUser($USERID, $USERNAME, $PHONETYPE){
- $stmt = $this->con->prepare("UPDATE USERLOC SET USERNAME = ?, PHONETYPE = ? WHERE USERID = ?");
- $stmt->bind_param("sss", $USERNAME, $PHONETYPE, $USERID);
+ function updateUser($USERID, $USERNAME, $PHONETYPE, $USERLOCATION){
+ $stmt = $this->con->prepare("UPDATE USERLOC SET USERNAME = ?, PHONETYPE = ?, USERLOCATION =?  WHERE USERID = ?");
+ $stmt->bind_param("ssss", $USERNAME, $PHONETYPE, $USERLOCATION, $USERID);
  if($stmt->execute())
  return true; 
  return false; 
  }
-
-  function updateLoc($USERID, $USERLOCATION){
- $stmt = $this->con->prepare("UPDATE USERLOC SET USERLOCATION = ?, WHERE USERID = ?");
- $stmt->bind_param("ss", $USERID, $USERLOCATION);
- if($stmt->execute())
- return true;
- return false;
- } 
+ 
  
 //deleteUser
  function deleteUser($USERID){

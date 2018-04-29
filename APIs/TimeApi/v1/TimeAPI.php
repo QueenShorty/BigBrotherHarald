@@ -88,13 +88,15 @@
  $response['CTIME'] = $db->getTime();
  break; 
  
- /*
+ 
  //the UPDATE operation
  case 'updateTime':
- isTheseParametersAvailable(array('CLOCK'));
+ isTheseParametersAvailable(array('ROOM','CLOCK','USER'));
  $db = new TimeOperation();
  $result = $db->updateTime(
- $_POST['CLOCK']
+ $_POST['ROOM'],
+ $_POST['CLOCK'],
+ $_POST['USER']
  );
  
  if($result){
@@ -106,7 +108,7 @@
  $response['message'] = 'Some error occurred please try again';
  }
  break; 
- */ 
+  
  /*
  //the delete operation
  case 'deleteTime':

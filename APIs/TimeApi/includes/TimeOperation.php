@@ -53,14 +53,14 @@ class TimeOperation
  /*
  * The update operation
  * When this method is called the record with the given id is updated with the new given values
- *//*
- function updateTime($CLOCK){
- $stmt = $this->con->prepare("UPDATE CTIME SET CLOCK = ? WHERE CLOCK = ?");
- $stmt->bind_param("s", $CLOCK);
+ */
+ function updateTime($ROOM, $CLOCK, $USER){
+ $stmt = $this->con->prepare("UPDATE CTIME SET ROOM = ?, CLOCK = ? WHERE USER = ?");
+ $stmt->bind_param("sss", $ROOM, $CLOCK, $USER);
  if($stmt->execute())
  return true; 
  return false; 
- }*/ 
+ }
  
  
  /*

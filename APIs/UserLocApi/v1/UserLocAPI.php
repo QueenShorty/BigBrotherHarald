@@ -29,6 +29,7 @@
  $_POST['USERNAME'],
  $_POST['USERID'],
  $_POST['PHONETYPE']
+
  );
  if($result){
  $response['error'] = false; 
@@ -51,12 +52,13 @@
  
  //updateUser
  case 'updateUser':
- isTheseParametersAvailable(array('USERID', 'USERNAME' ,'PHONETYPE'));
+ isTheseParametersAvailable(array('USERID', 'USERNAME' ,'PHONETYPE','USERLOCATION'));
  $db = new UserLocOperation();
  $result = $db->updateUser(
  $_POST['USERID'],
  $_POST['USERNAME'],
- $_POST['PHONETYPE']);
+ $_POST['PHONETYPE'],
+ $_POST['USERLOCATION']);
  if($result){
  $response['error'] = false; 
  $response['message'] = 'Username and/or Phone updated';
