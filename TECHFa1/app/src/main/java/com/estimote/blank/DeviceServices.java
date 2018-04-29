@@ -1,6 +1,7 @@
 package com.estimote.blank;
 
 import android.graphics.Typeface;
+import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +15,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.estimote.blank.Database.Api;
+import com.estimote.blank.Database.MainActivity;
 import com.estimote.blank.Database.RequestHandler;
 
 import org.json.JSONArray;
@@ -22,12 +24,15 @@ import org.json.JSONObject;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import static android.view.View.GONE;
 import static com.estimote.blank.Database.Api.URL_READ_USER_LOC;
 
 public class DeviceServices extends AppCompatActivity implements View.OnClickListener {
 
+    private static final int CODE_GET_REQUEST = 1024;
+    private static final int CODE_POST_REQUEST = 1025;
 
     private TableLayout Locations;
     private Button Refresh;
@@ -53,7 +58,6 @@ public class DeviceServices extends AppCompatActivity implements View.OnClickLis
        // Last.setVisibility(GONE);
 
         getData();
-
     }
 
     @Override
@@ -214,7 +218,65 @@ public class DeviceServices extends AppCompatActivity implements View.OnClickLis
         StrictMode.setThreadPolicy(policy);
     }
 
-    
+    private void updateUser() //At this point
+    {
+        String USERNAME = "Bob";
+        String USERID = "edb3";
+        String PHONETYPE = "ipad";
+        String USERLOCATION = "Stratosphere";
 
+        HashMap<String, String> params = new HashMap<>();
+        params.put("USERNAME", USERNAME);
+        params.put("USERID", USERID);
+        params.put("PHONETYPE", PHONETYPE);
+        params.put("USERLOCATION", USERLOCATION);
+
+
+        DeviceServices.PerformNetworkRequest request = new DeviceServices.PerformNetworkRequest(Api.URL_UPDATE_USER, params, CODE_POST_REQUEST);
+        request.execute();
+    }
+
+    public static class PerformNetworkRequest extends AsyncTask<Void, Void, String>
+    {
+        String url;
+        HashMap<String, String> params;
+        int requestCode;
+
+
+        PerformNetworkRequest(String url, HashMap<String, String> params, int requestCode) {
+            this.url = url;
+            this.params = params;
+            this.requestCode = requestCode;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+
+            try {
+                JSONObject object = new JSONObject(s);
+                if (!object.getBoolean("error")) {
+                    //Toast.makeText(getApplicationContext(), object.getString("message"), Toast.LENGTH_SHORT).show();
+                    // refreshHeroList(object.getJSONArray("heroes"));
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        protected String doInBackground(Void... voids) {
+            RequestHandler requestHandler = new RequestHandler();
+
+            if (requestCode == CODE_POST_REQUEST)
+                return requestHandler.sendPostRequest(url, params);
+
+
+            if (requestCode == CODE_GET_REQUEST)
+                return requestHandler.sendGetRequest(url);
+
+            return null;
+        }
+    }
 
 }
