@@ -43,7 +43,14 @@ class UserLocOperation
  return true; 
  return false; 
  }
- 
+
+  function updateLoc($USERID, $USERLOCATION){
+ $stmt = $this->con->prepare("UPDATE USERLOC SET USERLOCATION = ?, WHERE USERID = ?");
+ $stmt->bind_param("ss", $USERID, $USERLOCATION);
+ if($stmt->execute())
+ return true;
+ return false;
+ } 
  
 //deleteUser
  function deleteUser($USERID){
