@@ -1,10 +1,17 @@
 package com.estimote.blank;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.GridView;
 
+import com.estimote.blank.Database.Api;
+import com.estimote.blank.Database.RequestHandler;
 import com.estimote.blank.estimote.ProximityContentAdapter;
 import com.estimote.blank.estimote.ProximityContentManager;
 import com.estimote.mustard.rx_goodness.rx_requirements_wizard.Requirement;
@@ -17,6 +24,10 @@ import com.estimote.proximity_sdk.proximity.ProximityObserver;
 import com.estimote.proximity_sdk.proximity.ProximityObserverBuilder;
 import com.estimote.proximity_sdk.proximity.ProximityZone;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
 import java.util.List;
 
 import kotlin.Unit;
@@ -31,15 +42,22 @@ public class Proximity extends AppCompatActivity {
 
     private ProximityContentManager proximityContentManager;
     private ProximityContentAdapter proximityContentAdapter;
+    private static final int CODE_GET_REQUEST = 1024;
+    private static final int CODE_POST_REQUEST = 1025;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.content_main);
 
 
         //Build Proximity Observer, main object for performing observing
 
+        getLoc();
+
+    }
+
+    public void getLoc(){
         EstimoteCloudCredentials cloudCredentials = new EstimoteCloudCredentials("proximity-beacons-1-5-iq9", "b625fd3a5a0e35ffc4c93756c403f50c");
         ProximityObserver proximityObserver = new ProximityObserverBuilder(getApplicationContext(), cloudCredentials)
                 .withBalancedPowerMode()
@@ -60,10 +78,16 @@ public class Proximity extends AppCompatActivity {
         ProximityZone venueZone =
                 proximityObserver.zoneBuilder()
                         .forAttachmentKeyAndValue("locationOne", "living_room")
-                        .inFarRange()
+                        .inNearRange()
                         .withOnEnterAction(new Function1<ProximityAttachment, Unit>() {
                             @Override public Unit invoke(ProximityAttachment proximityAttachment) {
                                 /* Do something here */
+                                String zone = "Living Room";
+                                String USERNAME = "Daniel";
+                                String USERID = "567qer";
+                                String PHONETYPE = "Android";
+                                System.out.println("-----------------------------------------" + "Living Room");
+                                updateUser(USERNAME, USERID, PHONETYPE, zone);
                                 Log.d("app", "Welcome to the Living room!");
                                 return null;
                             }
@@ -72,6 +96,12 @@ public class Proximity extends AppCompatActivity {
                             @Override
                             public Unit invoke(ProximityAttachment proximityAttachment) {
                                 /* Do something here */
+                                String zone = "Living Room";
+                                String USERNAME = "Daniel";
+                                String USERID = "567qer";
+                                String PHONETYPE = "Android";
+                                System.out.println("-----------------------------------------" + "Living Room");
+                                updateUser(USERNAME, USERID, PHONETYPE, zone);
                                 Log.d("app", "Bye bye, come to the living room again!");
                                 return null;
                             }
@@ -84,10 +114,15 @@ public class Proximity extends AppCompatActivity {
         ProximityZone venueZone2 =
                 proximityObserver.zoneBuilder()
                         .forAttachmentKeyAndValue("locationTwo", "kitchen")
-                        .inFarRange()
+                        .inNearRange()
                         .withOnEnterAction(new Function1<ProximityAttachment, Unit>() {
                             @Override public Unit invoke(ProximityAttachment proximityAttachment) {
-
+                                String zone = "Kitchen";
+                                String USERNAME = "Daniel";
+                                String USERID = "567qer";
+                                String PHONETYPE = "Android";
+                                System.out.println("-----------------------------------------" + "Kitchen");
+                                updateUser(USERNAME, USERID, PHONETYPE, zone);
                                 Log.d("app", "Welcome to the kitchen");
                                 return null;
                             }
@@ -95,7 +130,12 @@ public class Proximity extends AppCompatActivity {
                         .withOnExitAction(new Function1<ProximityAttachment, Unit>() {
                             @Override
                             public Unit invoke(ProximityAttachment proximityAttachment) {
-
+                                String zone = "Kitchen";
+                                String USERNAME = "Daniel";
+                                String USERID = "567qer";
+                                String PHONETYPE = "Android";
+                                String USERLOCATION = zone;
+                                updateUser(USERNAME, USERID, PHONETYPE, USERLOCATION);
                                 Log.d("app", "Cya your'e leaving the kitchen");
                                 return null;
                             }
@@ -108,10 +148,15 @@ public class Proximity extends AppCompatActivity {
         ProximityZone venueZone3 =
                 proximityObserver.zoneBuilder()
                         .forAttachmentKeyAndValue("locationThree", "gym")
-                        .inFarRange()
+                        .inNearRange()
                         .withOnEnterAction(new Function1<ProximityAttachment, Unit>() {
                             @Override public Unit invoke(ProximityAttachment proximityAttachment) {
-
+                                String zone = "Bedroom";
+                                String USERNAME = "Daniel";
+                                String USERID = "567qer";
+                                String PHONETYPE = "Android";
+                                System.out.println("-----------------------------------------" + "Bedroom");
+                                updateUser(USERNAME, USERID, PHONETYPE, zone);
                                 Log.d("app", "Start lifting");
                                 return null;
                             }
@@ -119,7 +164,12 @@ public class Proximity extends AppCompatActivity {
                         .withOnExitAction(new Function1<ProximityAttachment, Unit>() {
                             @Override
                             public Unit invoke(ProximityAttachment proximityAttachment) {
-
+                                String zone = "Bedroom";
+                                String USERNAME = "Daniel";
+                                String USERID = "567qer";
+                                String PHONETYPE = "Android";
+                                System.out.println("-----------------------------------------" + "Bedroom");
+                                updateUser(USERNAME, USERID, PHONETYPE, zone);
                                 Log.d("app", "Wobble bye");
                                 return null;
                             }
@@ -167,6 +217,7 @@ public class Proximity extends AppCompatActivity {
                         .addProximityZone(venueZone3)
                         .start();
 
+
     }
 
     private void startProximityContentManager() {
@@ -179,6 +230,64 @@ public class Proximity extends AppCompatActivity {
         super.onDestroy();
         if (proximityContentManager != null)
             proximityContentManager.stop();
+    }
+
+    private void updateUser(String USERNAME,String USERID,String PHONETYPE, String USERLOCATION) //At this point
+    {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("USERNAME", USERNAME);
+        params.put("USERID", USERID);
+        params.put("PHONETYPE", PHONETYPE);
+        params.put("USERLOCATION", USERLOCATION);
+        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" + USERLOCATION);
+
+
+        Proximity.PerformNetworkRequest request = new Proximity.PerformNetworkRequest(Api.URL_UPDATE_USER, params, CODE_POST_REQUEST);
+        request.execute();
+
+    }
+
+    public static class PerformNetworkRequest extends AsyncTask<Void, Void, String>
+    {
+        String url;
+        HashMap<String, String> params;
+        int requestCode;
+
+
+        PerformNetworkRequest(String url, HashMap<String, String> params, int requestCode) {
+            this.url = url;
+            this.params = params;
+            this.requestCode = requestCode;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+
+            try {
+                JSONObject object = new JSONObject(s);
+                if (!object.getBoolean("error")) {
+                    //Toast.makeText(getApplicationContext(), object.getString("message"), Toast.LENGTH_SHORT).show();
+                    // refreshHeroList(object.getJSONArray("heroes"));
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        protected String doInBackground(Void... voids) {
+            RequestHandler requestHandler = new RequestHandler();
+
+            if (requestCode == CODE_POST_REQUEST)
+                return requestHandler.sendPostRequest(url, params);
+
+
+            if (requestCode == CODE_GET_REQUEST)
+                return requestHandler.sendGetRequest(url);
+
+            return null;
+        }
     }
 
 }

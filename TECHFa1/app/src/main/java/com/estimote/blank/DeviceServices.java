@@ -58,6 +58,7 @@ public class DeviceServices extends AppCompatActivity implements View.OnClickLis
        // Last.setVisibility(GONE);
 
         getData();
+        updateUser();
     }
 
     @Override
@@ -223,7 +224,7 @@ public class DeviceServices extends AppCompatActivity implements View.OnClickLis
         String USERNAME = "Bob";
         String USERID = "edb3";
         String PHONETYPE = "ipad";
-        String USERLOCATION = "Stratosphere";
+        String USERLOCATION = "Jupiter";
 
         HashMap<String, String> params = new HashMap<>();
         params.put("USERNAME", USERNAME);
@@ -234,6 +235,7 @@ public class DeviceServices extends AppCompatActivity implements View.OnClickLis
 
         DeviceServices.PerformNetworkRequest request = new DeviceServices.PerformNetworkRequest(Api.URL_UPDATE_USER, params, CODE_POST_REQUEST);
         request.execute();
+        updateUI();
     }
 
     public static class PerformNetworkRequest extends AsyncTask<Void, Void, String>
