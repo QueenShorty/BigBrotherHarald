@@ -172,12 +172,13 @@ public class MainActivity extends AppCompatActivity
                 request.execute();
             }
  
-    private class PerformNetworkRequest extends AsyncTask<Void, Void, String> 
+    public static class PerformNetworkRequest extends AsyncTask<Void, Void, String>
     {
         String url;
         HashMap<String, String> params;
         int requestCode;
- 
+        private View progressBar;
+
         PerformNetworkRequest(String url, HashMap<String, String> params, int requestCode) {
             this.url = url;
             this.params = params;
@@ -197,7 +198,7 @@ public class MainActivity extends AppCompatActivity
             try {
                 JSONObject object = new JSONObject(s);
                 if (!object.getBoolean("error")) {
-                    Toast.makeText(getApplicationContext(), object.getString("message"), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), object.getString("message"), Toast.LENGTH_SHORT).show();
                    // refreshHeroList(object.getJSONArray("heroes"));
                 }
             } catch (JSONException e) {

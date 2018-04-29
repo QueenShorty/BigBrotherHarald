@@ -29,7 +29,7 @@ tools:context=".MainActivity">
         app:layout_constraintRight_toRightOf="parent"
 
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Logo"></com.google.android.gms.common.SignInButton>
+        app:layout_constraintTop_toBottomOf="@+id/Logo" />
 
     <Button
         android:id="@+id/bn_logout"

@@ -8,22 +8,6 @@
     tools:context=".ManageUsers">
 
 
-    <ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-
-        <TableLayout
-            android:id="@+id/userTable"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="96dp"
-            android:padding="0dp"
-            android:stretchColumns="*"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
-    </ScrollView>
-
     <!--<TableLayout
         android:id="@+id/userTable"
         android:layout_width="wrap_content"
@@ -71,14 +55,37 @@
 
     <Button
         android:id="@+id/bn_addUser"
-        android:layout_width="62dp"
+        android:layout_width="101dp"
         android:layout_height="40dp"
-        android:layout_marginEnd="36dp"
+        android:layout_marginEnd="48dp"
         android:layout_marginTop="40dp"
-        android:text="Add"
+        android:text="Add User"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="370dp"
+        android:layout_height="410dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="100dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TableLayout
+            android:id="@+id/userTable"
+            android:layout_width="368dp"
+            android:layout_height="wrap_content"
+
+            android:padding="0dp"
+            android:stretchColumns="*"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </ScrollView>
+
 
     <!--<TextView
         android:id="@+id/textView_test"

@@ -3,8 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.estimote.blank">
 
-    <uses-sdk android:minSdkVersion="9"/>
+    <uses-sdk android:minSdkVersion="9" />
+
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name=".MyApplication"
@@ -26,30 +30,42 @@
         <activity android:name=".MainMenu" />
         <activity
             android:name=".adminmenu"
-            android:label="Admin Menu" />
+            android:label="Admin Menu"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".DeviceServices"
-            android:label="Device Services" />
+            android:label="Device Services"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ProfilePage"
-            android:label="Profile Page" />
+            android:label="Profile Page"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ControlHub"
-            android:label="Room Settings" />
+            android:label="Room Settings"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ManageUsers"
-            android:label="Manage Users" />
+            android:label="Manage Users"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".UserLogs"
-            android:label="User Logs" />
-        <activity android:name=".Proximity"
+            android:label="User Logs"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Proximity"
             android:label="Proximity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".addUser"
+            android:label="Add User"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

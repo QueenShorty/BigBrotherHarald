@@ -2,12 +2,14 @@ package com.estimote.blank;
 
 import android.app.ActionBar;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.StrictMode;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,10 +32,12 @@ import java.util.ArrayList;
 
 import static android.view.View.GONE;
 import static com.estimote.blank.Database.Api.URL_READ_USER_LOC;
+import static com.estimote.blank.Database.Api.URL_CREATE_USER;
 
 public class ManageUsers extends AppCompatActivity implements View.OnClickListener {
 
     private Button AddUser, Delete1;
+    private EditText UserNameToAdd;
     private TableRow Row1;
     private TableLayout UserTable;
     private TextView User1, Test;
@@ -52,10 +56,10 @@ public class ManageUsers extends AppCompatActivity implements View.OnClickListen
         Delete1 = (Button)findViewById(R.id.bn_deleteuser1);*/
         AddUser = (Button)findViewById(R.id.bn_addUser);
         UserTable = (TableLayout)findViewById(R.id.userTable);
-        //Row1 = (TableRow)findViewById(R.id.row1);
+        AddUser.setOnClickListener(this);
 
         getUsers();
-        //displayUsers(userNames);
+
     }
 
     @Override
@@ -63,13 +67,9 @@ public class ManageUsers extends AppCompatActivity implements View.OnClickListen
 
         switch (view.getId())
         {
-            /*case R.id.bn_addUser:
-                //addUser();
+            case R.id.bn_addUser:
+                addUser();
                 break;
-            case R.id.bn_deleteuser1:
-                Delete1.setVisibility(GONE);
-                UserTable.removeView(Row1);
-                break;*/
         }
     }
 
@@ -149,26 +149,12 @@ public class ManageUsers extends AppCompatActivity implements View.OnClickListen
 
     }
 
-    /*public void getStuff()
-    {
-        enableStrictMode();
-        JSONObject test = null;
-        try {
-            test = new JSONObject(ReqHandler.sendGetRequest(URL_READ_USER_LOC));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        System.out.println("=========================");
-        System.out.println("=========================");
-        try {
-            System.out.println(test.getString("USERLOC"));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        System.out.println("=========================");
-        System.out.println("=========================");
-        Test.setText(test.toString());
-    }*/
+    public void addUser(){
+
+        Intent switchToAddUser = new Intent(this, addUser.class);
+        startActivity(switchToAddUser);
+
+    }
 
     public void enableStrictMode(){
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
