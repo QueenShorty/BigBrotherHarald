@@ -1,26 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.estimote.blank.DeviceServices"
-    tools:ignore="ExtraText">
+    tools:context=".DeviceServices">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="434dp"
+        android:layout_marginTop="80dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TableLayout
+            android:id="@+id/DeviceLocationsTable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:stretchColumns="*"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </TableLayout>
+    </ScrollView>
 
     <TextView
-        android:id="@+id/txt_LocationTable"
-        android:layout_width="153dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="36dp"
+        android:id="@+id/textView"
+        android:layout_width="181dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
         android:text="Locations"
-        android:textSize="30sp"
-
+        android:textSize="30dp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TableLayout
-        android:id="@+id/tableLayout"
+    <Button
+        android:id="@+id/bn_refresh"
+        android:layout_width="88dp"
+        android:layout_height="37dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginTop="34dp"
+        android:text="Refresh"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <!--<TableLayout
+        android:id="@+id/table_Locations"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="5dp"
@@ -30,7 +62,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TableRow
+        &lt;!&ndash;<TableRow
             android:layout_width="match_parent"
             android:layout_height="26dp">
 
@@ -47,9 +79,9 @@
                 android:layout_height="wrap_content"
                 android:text="Location"
                 android:textSize="24sp" />
-        </TableRow>
+        </TableRow>&ndash;&gt;
 
-        <TableRow
+       &lt;!&ndash; <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -198,10 +230,10 @@
                 android:background="@drawable/cell_shape"
                 android:text="Living Room"
                 android:textSize="18sp" />
-        </TableRow>
-    </TableLayout>
+        </TableRow>&ndash;&gt;
+    </TableLayout>-->
 
-    <Button
+    <!--<Button
         android:id="@+id/bn_scanButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -212,7 +244,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.307"
         app:layout_constraintStart_toEndOf="@+id/txt_scanNewDevices"
-        app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/DeviceLocationsTable" />
 
     <TextView
         android:id="@+id/txt_scanNewDevices"
@@ -223,7 +255,7 @@
         android:text="Scan for new devices"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/DeviceLocationsTable" />
 
     <ProgressBar
         android:id="@+id/loading_spinner"
@@ -244,7 +276,7 @@
         android:layout_marginTop="64dp"
         android:text="Personal Stats"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_scanNewDevices" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_scanNewDevices" />-->
 
 
 </android.support.constraint.ConstraintLayout>

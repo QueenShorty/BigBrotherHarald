@@ -39,9 +39,8 @@ public class ManageUsers extends AppCompatActivity implements View.OnClickListen
     private TextView User1, Test;
     //ArrayList<String> userNames = new ArrayList<String>();
 
-    Api Api = new Api();
     RequestHandler ReqHandler = new RequestHandler();
-    String ROOT_URL = Api.ROOT_URL;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,6 +142,7 @@ public class ManageUsers extends AppCompatActivity implements View.OnClickListen
             button.setId(i);
 
             tableRow.addView(button);
+            System.out.println(tableRow);
             UserTable.addView(tableRow);
 
         }
