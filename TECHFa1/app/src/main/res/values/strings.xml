@@ -7,9 +7,9 @@
 
     <string-array name="users">
         <item>All</item>
-        <item>You</item>
-        <item>Jill</item>
-        <item>Bob</item>
+        <item>Nick</item>
+        <item>Daniel</item>
+        <item>Jon</item>
 
 
     </string-array>

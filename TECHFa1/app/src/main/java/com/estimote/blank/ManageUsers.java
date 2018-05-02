@@ -117,11 +117,6 @@ public class ManageUsers extends AppCompatActivity implements View.OnClickListen
             userNames.add(username);
         }
 
-        System.out.println("=========================");
-        System.out.println("=========================");
-        System.out.println(userNames);
-        System.out.println("=========================");
-        System.out.println("=========================");
         //Test.setText(data.toString());
         displayUsers(userNames);
     }
@@ -138,19 +133,11 @@ public class ManageUsers extends AppCompatActivity implements View.OnClickListen
             final TextView textView = new TextView(this);
             textView.setId(i);
             textView.setText(userNames.get(i));
-            System.out.println(userNames.get(i));
             textView.setWidth(900);
             textView.setHeight(150);
             textView.setTextSize(dp);
             tableRow.addView(textView);
-            final Button button = new Button(this);
-            button.setText("Delete");
-            button.setId(i);
-            final int index = i;
 
-
-            tableRow.addView(button);
-            System.out.println(tableRow);
             UserTable.addView(tableRow);
 
         }

@@ -1,11 +1,13 @@
 package com.estimote.blank;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,6 +31,7 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Random;
+import java.util.concurrent.Phaser;
 import java.util.concurrent.ThreadLocalRandom;
 
 import static android.view.View.GONE;
@@ -42,11 +45,17 @@ public class addUser extends AppCompatActivity implements View.OnClickListener {
     EditText editTextName, editTextDevice;
     ProgressBar progressBar;
     Button buttonAddUpdate, DeleteUser;
-    Spinner SpinDeleteUser;
+    Spinner SpinDeleteUser, SpinDevice;
     ArrayList<String> userIDs = new ArrayList<>();
     ArrayList<String> userNames = new ArrayList<>();
 
+
     RequestHandler ReqHandler = new RequestHandler();
+
+    String myDeviceModel = android.os.Build.MODEL;
+    String[] deviceSpinner = new String[] {
+            myDeviceModel
+    };
 
     boolean isUpdating = false;
 
@@ -62,6 +71,7 @@ public class addUser extends AppCompatActivity implements View.OnClickListener {
         SpinDeleteUser = (Spinner) findViewById(R.id.spinner_DeleteUser);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         DeleteUser = (Button) findViewById(R.id.bn_Delete_User);
+        SpinDevice = (Spinner) findViewById(R.id.spinner_Device);
 
         buttonAddUpdate.setOnClickListener(this);
         DeleteUser.setOnClickListener(this);
@@ -74,13 +84,10 @@ public class addUser extends AppCompatActivity implements View.OnClickListener {
 
 
         userNames = getUsers("USERNAMES");
-        System.out.println("=========================");
-        System.out.println("=========================");
-        System.out.println(userNames);
-        System.out.println("=========================");
-        System.out.println("=========================");
         ArrayAdapter<String> adp = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item, userNames);
+        ArrayAdapter<String> deviceadp = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item, deviceSpinner);
         SpinDeleteUser.setAdapter(adp);
+        SpinDevice.setAdapter(deviceadp);
 
 
         readUser();
@@ -92,6 +99,12 @@ public class addUser extends AppCompatActivity implements View.OnClickListener {
         {
             case R.id.buttonAddUpdate:
                 createUser();
+                InputMethodManager imm = (InputMethodManager)getSystemService(
+                        Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(editTextName.getWindowToken(), 0);
+                imm.hideSoftInputFromWindow(editTextDevice.getWindowToken(), 0);
+                editTextDevice.setText("");
+                editTextName.setText("");
                 break;
             case R.id.bn_Delete_User:
                 String USERID = "";
@@ -106,6 +119,15 @@ public class addUser extends AppCompatActivity implements View.OnClickListener {
                 deleteUser(USERID);
                 break;
         }
+    }
+
+    public void updateUI(){
+        userIDs = getUsers("USERID");
+        userNames = getUsers("USERNAMES");
+        ArrayAdapter<String> adp = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item, userNames);
+        ArrayAdapter<String> deviceadp = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item, deviceSpinner);
+        SpinDeleteUser.setAdapter(adp);
+        SpinDevice.setAdapter(deviceadp);
     }
 
     public ArrayList<String> getUsers(String type)
@@ -156,11 +178,6 @@ public class addUser extends AppCompatActivity implements View.OnClickListener {
             userNames.add(username);
         }
 
-        System.out.println("=========================");
-        System.out.println("=========================");
-        System.out.println(userIDs);
-        System.out.println("=========================");
-        System.out.println("=========================");
         //Test.setText(data.toString());
         if (type == "USERID")
         {
@@ -175,7 +192,7 @@ public class addUser extends AppCompatActivity implements View.OnClickListener {
 
     private void createUser()
     {
-        System.out.println("+++++++++++++++++++1");
+
         String USERNAME = editTextName.getText().toString().trim();
         String PHONETYPE = editTextDevice.getText().toString().trim();
         String USERID = "";
@@ -189,24 +206,22 @@ public class addUser extends AppCompatActivity implements View.OnClickListener {
             editTextName.requestFocus();
             return;
         }
-
-        if (TextUtils.isEmpty(PHONETYPE)) {
-            editTextDevice.setError("Please enter a device");
-            editTextDevice.requestFocus();
-            return;
+        if (TextUtils.isEmpty(PHONETYPE));
+        {
+            PHONETYPE = SpinDevice.getSelectedItem().toString();
         }
 
+
         //if validation passes
-        System.out.println("+++++++++++++++++++2");
         HashMap<String, String> params = new HashMap<>();
         params.put("USERNAME", USERNAME);
         params.put("USERID", USERID);
         params.put("PHONETYPE", PHONETYPE);
 
-        System.out.println("+++++++++++++++++++3");
         //Calling the create USER API
         addUser.PerformNetworkRequest request = new addUser.PerformNetworkRequest(Api.URL_CREATE_USER, params, CODE_POST_REQUEST);
         request.execute();
+        updateUI();
 
     }
 
@@ -214,6 +229,7 @@ public class addUser extends AppCompatActivity implements View.OnClickListener {
     {
         addUser.PerformNetworkRequest request = new addUser.PerformNetworkRequest(Api.URL_DELETE_USER + USERID, null, CODE_GET_REQUEST);
         request.execute();
+        updateUI();
     }
 
 
@@ -268,7 +284,6 @@ public class addUser extends AppCompatActivity implements View.OnClickListener {
 
     private void readUser()
     {
-        System.out.println("+++++++++++++++++++4");
         addUser.PerformNetworkRequest request = new addUser.PerformNetworkRequest(Api.URL_READ_USER_LOC, null, CODE_GET_REQUEST);
         request.execute();
     }

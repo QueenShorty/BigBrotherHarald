@@ -26,14 +26,14 @@ public class adminmenu extends AppCompatActivity implements View.OnClickListener
         setContentView(R.layout.activity_adminmenu);
         String name = getIntent().getStringExtra("USER_NAME");
 
-        ControlHubSettings = (Button)findViewById(R.id.bn_controlHubSettings);
+        //ControlHubSettings = (Button)findViewById(R.id.bn_controlHubSettings);
         UserSettings = (Button)findViewById(R.id.bn_userSettings);
         ManageUsers = (Button)findViewById(R.id.bn_manageUsers);
         UserLogs = (Button)findViewById(R.id.bn_userLogs);
-        AddAdmin = (Button)findViewById(R.id.bn_addAdmin);
-        AddAdmin.setVisibility(GONE);
+        //AddAdmin = (Button)findViewById(R.id.bn_addAdmin);
+        //AddAdmin.setVisibility(GONE);
 
-        ControlHubSettings.setOnClickListener(this);
+        //ControlHubSettings.setOnClickListener(this);
         UserSettings.setOnClickListener(this);
         ManageUsers.setOnClickListener(this);
         UserLogs.setOnClickListener(this);
@@ -47,9 +47,9 @@ public class adminmenu extends AppCompatActivity implements View.OnClickListener
 
         switch (view.getId())
         {
-            case R.id.bn_controlHubSettings:
+            /*case R.id.bn_controlHubSettings:
                 controlHub();
-                break;
+                break;*/
             case R.id.bn_manageUsers:
                 manageUsers();
                 break;

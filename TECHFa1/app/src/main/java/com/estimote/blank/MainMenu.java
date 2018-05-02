@@ -25,15 +25,15 @@ public class MainMenu extends AppCompatActivity implements View.OnClickListener,
         setContentView(R.layout.activity_mainmenu);
 
         DeviceServ = (Button)findViewById(R.id.bn_deviceServ);
-        Profile = (Button)findViewById(R.id.bn_profile);
+        //Profile = (Button)findViewById(R.id.bn_profile);
         Admin = (Button)findViewById(R.id.bn_admin);
         Proximity = (Button)findViewById(R.id.bn_proximity);
         Name = (TextView)findViewById(R.id.user_name);
-        Profile.setVisibility(View.GONE);
+        //Profile.setVisibility(View.GONE);
         Name.setVisibility(View.GONE);
         //Name.setText(name);
         DeviceServ.setOnClickListener(this);
-        Profile.setOnClickListener(this);
+        //Profile.setOnClickListener(this);
         Admin.setOnClickListener(this);
         Proximity.setOnClickListener(this);
 
@@ -47,9 +47,9 @@ public class MainMenu extends AppCompatActivity implements View.OnClickListener,
             case R.id.bn_deviceServ:
                 deviceServ();
                 break;
-            case R.id.bn_profile:
+            /*case R.id.bn_profile:
                 profilePage();
-                break;
+                break;*/
             case R.id.bn_proximity:
                 proximity();
                 break;

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.estimote.blank.adminmenu">
 
-    <Button
+    <!--<Button
         android:id="@+id/bn_controlHubSettings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -14,14 +14,14 @@
         android:layout_marginTop="68dp"
         android:text="Room Settings"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />-->
 
     <Button
         android:id="@+id/bn_userSettings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="128dp"
+        android:layout_marginTop="24dp"
         android:text="User Settings"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bn_manageUsers" />
@@ -30,28 +30,28 @@
         android:id="@+id/bn_manageUsers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="128dp"
+        android:layout_marginTop="152dp"
         android:text="Manage Users"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bn_controlHubSettings" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <!--<Button
         android:id="@+id/bn_addAdmin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="64dp"
         android:text="Add Administrator"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bn_userLogs" />
+        app:layout_constraintTop_toBottomOf="@+id/bn_userLogs" />-->
 
     <Button
         android:id="@+id/bn_userLogs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="144dp"
+        android:layout_marginTop="24dp"
         android:text="User Logs"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bn_userSettings" />

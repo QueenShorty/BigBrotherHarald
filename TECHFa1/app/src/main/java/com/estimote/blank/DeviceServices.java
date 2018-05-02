@@ -126,17 +126,17 @@ public class DeviceServices extends AppCompatActivity implements View.OnClickLis
                 e.printStackTrace();
             }
             try {
-                System.out.println("________________________" + jsonobject.getString("USERLOCATION") + "________________________");
+
                 if (jsonobject.getString("USERLOCATION").isEmpty())
                 {
                     location = "Unknown";
-                    System.out.println("+++++++++++++++++++++if statement");
+
                 }
                 else
                 {
 
                     location = jsonobject.getString("USERLOCATION");
-                    System.out.println("+++++++++++++++++++++else statement");
+
                 }
 
             } catch (JSONException e) {
@@ -182,18 +182,22 @@ public class DeviceServices extends AppCompatActivity implements View.OnClickLis
             //USERNAMES
             TextView textView1 = new TextView(this);
             TextView textView2 = new TextView(this);
+
+
+
+            textView1.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
+            textView2.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
+
             userAndDevice = userNames.get(i) + "'s " + phonetypes.get(i);
             textView1.setText(userAndDevice);
             textView2.setText(location.get(i));
             textView1.setId(i);
             System.out.println(userNames.get(i));
             textView1.setWidth(900);
-            textView1.setHeight(150);
             textView1.setTextSize(dp);
             textView2.setId(i + userNames.size());
             System.out.println(location.get(i));
             textView2.setWidth(900);
-            textView2.setHeight(150);
             textView2.setTextSize(dp);
             tableRow.addView(textView1);
             tableRow.addView(textView2);

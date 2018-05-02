@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         SignIn = (SignInButton)findViewById(R.id.bn_login);
         SignOut = (Button)findViewById(R.id.bn_logout);
         MainMenu = (Button)findViewById(R.id.bn_mainMenu);

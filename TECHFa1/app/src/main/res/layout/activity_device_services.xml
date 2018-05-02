@@ -32,7 +32,7 @@
         android:id="@+id/textView"
         android:layout_width="181dp"
         android:layout_height="37dp"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:text="Locations"
         android:textSize="30dp"
